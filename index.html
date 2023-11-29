@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+    
+  </style>
+</head>
+<body>
+
+      <!-- NAVIGATION SECTION -->
+  <div class="navbar">
+    <h2>VOBOSS</h2>
+    <ul class="list-item">
+      <li>Overview</li>
+      <li>Services</li>
+      <li>Benefits</li>
+      <li>The Team</li>
+      <li>Pricing</li>
+      <li>Contact Us</li>
+    </ul>
+    <button>Start a Project</button>
+  </div>
+  <hr>
+
+  <div class="main">
+            <!-- THE QUOTE -->
+      <div class="text">
+        <h2>If you can't feed a team with two pizzas, it's too large.</h2>
+      </div>
+            <!-- info -->
+      <div class="detail">
+        <p>THIS PROMO ENDS IN...</p>
+      </div>
+
+  
+          <!-- TIMER -->
+      <div id="timer"></div>
+
+      <div class="video">
+        <i id="icon" class="fa-solid fa-play"></i>
+        <h3>Watch The Video</h3>
+        <span>148seconds</span>
+      </div>
+  </div>
+
+  
+
+  <script>
+    const Promodate = new Date('2023-12-01');
+
+    function updateCountdown() {
+      const currentDate = new Date();
+      const difference = Promodate - currentDate;
+
+      if (difference <= 0) {
+        document.getElementById('timer').innerHTML = 'Promo ends already';
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('timer').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // Move the setInterval outside of the updateCountdown function
+    }
+
+    // Call setInterval after defining the function
+    setInterval(updateCountdown, 1000);
+
+    // Initial call to set up the timer
+    updateCountdown();
+  </script>
+
+</body>
+</html>
